@@ -1,0 +1,38 @@
+.smart-notes-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+#smart-notes-modal .smart-notes-modal-content {
+background: white;
+padding: 20px;
+border-radius: 8px;
+width: 400px;
+max-width: 90%;
+}
+
+#smart-notes-modal textarea {
+width: 100%;
+margin-bottom: 10px;
+resize: vertical;
+}
+
+#smart-notes-modal select, 
+#smart-notes-modal button {
+margin: 5px 0;
+padding: 5px;
+}
+
+#smart-notes-modal .smart-notes-actions {
+display: flex;
+justify-content: space-between;
+}
+

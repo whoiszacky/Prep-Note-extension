@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Notes</title>
+  <style>
+    body { width: 300px; padding: 10px; font-family: Arial, sans-serif; }
+    .subject-list { list-style-type: none; padding: 0; }
+    .subject-list li { padding: 5px; border-bottom: 1px solid #eee; cursor: pointer; }
+    .subject-list li:hover { background-color: #f0f0f0; }
+  </style>
+</head>
+<body>
+  <h1>Your Notes</h1>
+  <input type="text" id="new-subject" placeholder="Add new subject">
+  <button id="add-subject">Add Subject</button>
+  <ul id="subjects" class="subject-list"></ul>
+  <script src="popup.js"></script>
+</body>
+</html>
