@@ -195,10 +195,8 @@ function saveNote() {
   }
 
   const noteData = {
-    text: text,
-    subject: subject,
-    url: window.location.href,
-    timestamp: new Date().toISOString(),
+    title: subject, // Use the subject as the title
+    content: text,
     userId: 'user_id_placeholder', // Replace with actual user ID
     metadata: {
       pageTitle: document.title,

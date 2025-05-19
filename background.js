@@ -8,7 +8,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "smartNotes") {
-    if (tab && tab.id) {
+    if (tab && tab.id && tab.url && tab.url.startsWith('http')) {
       chrome.tabs.sendMessage(tab.id, {
         action: "openNoteModal",
         text: info.selectionText
@@ -18,14 +18,14 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
         }
       });
     } else {
-      console.error('Tab not found');
+      console.error('Tab not found or URL not supported');
     }
   }
 });
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "syncNote") {
-    fetch('http://localhost:3000/api/notes', {
+    fetch('http://localhost:5001/api/notes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -34,8 +34,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       body: JSON.stringify(message.noteData)
     })
     .then(response => response.json())
-    .then(data => sendResponse({status: 'success', data: data}))
-    .catch(error => sendResponse({status: 'error', error: error}));
-    return true;
+    .then(data => {
+      sendResponse({status: 'success', data: data});
+    })
+    .catch(error => {
+      sendResponse({status: 'error', error: error});
+    });
+    return true; // Keep the message channel open for sendResponse
   }
 });
